@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test HTML Stranica</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!-- 
+      Interni css
+      
+      <style>
+      table {
+        background-color: blue;
+      }
+    </style> -->
+  </head>
+
+  <body>
+    <h1>Naslov HTML stranice</h1>
+    <p>
+      Lorem ipsum dolor sit amet.lore Lorem ipsum dolor sit amet, consectetur
+      adipisicing elit. Molestias, impedit!
+    </p>
+    <ul>
+      <li><a href="https://www.google.com/"> prvi link - Google </a></li>
+      <li><a href="./test.html"> drugi link - Interna stranica</a></li>
+      <li>Treci</li>
+    </ul>
+
+    <!--  
+      Sekcija tabela
+      
+      Inline css
+      <table style="border: 1px solid black; background-color: bisque"> -->
+    <table id="firstTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Grad</th>
+          <th>Drzava</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Podgorica</td>
+          <td>Crna Gora</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Budva</td>
+          <td>
+            Crna Gora
+            <!-- <img
+              src="./img/dog.jpg"
+              alt="Slika psa"
+              width="50px"
+              height="100px"
+            /> -->
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Berane</td>
+          <td>
+            Crna Gora
+            <!-- <img
+              src="data:image/jpeg;base64,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"
+              alt="Drugi pas"
+              width="50px"
+              height="100px"
+            /> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Druga tabela -->
+    <table id="secondTable" class="yellowgreen">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Grad</th>
+          <th>Drzava</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Podgorica</td>
+          <td>Crna Gora</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Budva</td>
+          <td>Crna Gora</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Berane</td>
+          <td>Crna Gora</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table id="thirdTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Grad</th>
+          <th>Drzava</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Podgorica</td>
+          <td>Crna Gora</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Budva</td>
+          <td>Crna Gora</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Berane</td>
+          <td>Crna Gora</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table id="fourthTable" class="yellowgreen">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Grad</th>
+          <th>Drzava</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Podgorica</td>
+          <td>Crna Gora</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Budva</td>
+          <td>Crna Gora</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Berane</td>
+          <td>Crna Gora</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table id="fifthTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Grad</th>
+          <th>Drzava</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Podgorica</td>
+          <td>Crna Gora</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Budva</td>
+          <td>Crna Gora</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Berane</td>
+          <td>Crna Gora</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr />
+    <h3>Kontakt</h3>
+    <a href="tel:067/993-311">Pozovite nas...</a>
+    <a href="mailto:mail@mail.com">Pisite nam putem maila...</a>
+
+    <!-- Sekcija forme -->
+    <form action="./send_contact.html">
+      <input
+        type="text"
+        name="ime"
+        placeholder="Unesite vase ime"
+        id="kontaktInputIme"
+      />
+      <input
+        type="number"
+        name="godine"
+        placeholder="Unesite vase godine"
+        id="kontaktInputGodine"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Unesite vas email"
+        id="kontaktInputEmail"
+      />
+      <label>Odaberite pol</label>
+      <input type="radio" name="pol" checked /> Musko
+      <input type="radio" name="pol" /> Zensko
+      <input type="checkbox" name="promo" id="kontaktPromoCheck" />
+      <label for="kontaktPromoCheck">Zelim da dobijam promo mailove</label>
+      <textarea
+        name="kontaktTxtPoruka"
+        id=""
+        cols="30"
+        rows="10"
+        required
+      ></textarea>
+      <input type="submit" value="Posalji poruku" />
+    </form>
+
+    <button onclick="back()">Nazad/Odustani</button>
+  </body>
+</html>

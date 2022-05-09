@@ -1,0 +1,20 @@
+table {
+  background-color: blue;
+  color: white;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.yellowgreen thead:nth-child(1) {
+  background-color: purple;
+}
+/*#firstTable{
+      background-color: red;
+  }
+   #secondTable {
+    background-color: yellow;
+  }
+  */
+#thirdTable {
+  background-color: red;
+}
