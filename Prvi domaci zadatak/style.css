@@ -1,0 +1,36 @@
+#naslov {
+  color: gray;
+  font-size: 28px;
+  text-align: center;
+}
+
+#tabela table {
+  width: 100vw;
+  padding: 5% 10%;
+}
+
+#tabela table td {
+  text-align: center;
+  list-style-position: inside;
+}
+
+/* Vec podrazumijevano
+#tabela table th {
+  font-weight: bold;
+} */
+
+#tabela table tbody tr:nth-child(odd) {
+  background-color: white;
+}
+#tabela table tbody tr:nth-child(even) {
+  background-color: #e9ecef;
+}
+
+#tabela th {
+  border: 2px solid black;
+}
+
+#tabela img {
+  height: 100px;
+  width: 190px;
+}
