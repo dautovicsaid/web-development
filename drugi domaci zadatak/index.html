@@ -11,6 +11,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body onload="showMovies()">
     <div class="container">
@@ -31,24 +32,14 @@
           </table>
         </div>
         <div class="col-2 offset-2 text-right">
-          <button
-            data-bs-toggle="modal"
-            data-bs-target="#createMovieModal"
-            class="btn btn-primary"
-          >
+          <button class="btn btn-primary" onclick="showCreateMovieModal()">
             Dodaj novi film
           </button>
         </div>
       </div>
     </div>
 
-    <div
-      class="modal fade"
-      id="createMovieModal"
-      tabindex="-1"
-      aria-labelledby="createMovieLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="createMovieModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -56,8 +47,7 @@
             <button
               type="button"
               class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
+              onclick="closeCreateMovieModal()"
             ></button>
           </div>
           <form
@@ -66,45 +56,57 @@
             onsubmit="return addMovie(event)"
           >
             <div class="modal-body">
-              <input
-                type="text"
-                name="title"
-                required
-                class="form-control mb-2"
-                placeholder="Unesite ime filma"
-              />
-              <span id="error-title" style="display: none"></span>
-
-              <input
-                type="number"
-                name="year"
-                class="form-control mb-2"
-                placeholder="Unesite godinu kada je film napravljen"
-              />
-              <input
-                type="text"
-                name="country"
-                class="form-control mb-2"
-                placeholder="Unesite drzavu"
-              />
-              <input
-                type="text"
-                name="note"
-                class="form-control mb-2"
-                placeholder="Unesite napomenu"
-              />
-              <input
-                type="text"
-                name="actors"
-                class="form-control mb-2"
-                placeholder="Unesite glumce"
-              />
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="title"
+                  class="form-control mb-2"
+                  placeholder="Unesite ime filma"
+                />
+                <span id="error-title"></span>
+              </div>
+              <div class="form-group">
+                <input
+                  type="number"
+                  name="year"
+                  class="form-control mb-2"
+                  placeholder="Unesite godinu kada je film napravljen"
+                />
+                <span id="error-year" class="d-none"></span>
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="country"
+                  class="form-control mb-2"
+                  placeholder="Unesite drzavu"
+                />
+                <span id="error-country" class="d-none"></span>
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="note"
+                  class="form-control mb-2"
+                  placeholder="Unesite napomenu"
+                />
+                <span id="error-note" class="d-none"></span>
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="actors"
+                  class="form-control mb-2"
+                  placeholder="Unesite glumce"
+                />
+                <span id="error-actors" class="d-none"></span>
+              </div>
             </div>
             <div class="modal-footer">
               <button
                 type="button"
                 class="btn btn-secondary"
-                data-bs-dismiss="modal"
+                onclick="closeCreateMovieModal()"
               >
                 Otkazi
               </button>
@@ -114,6 +116,11 @@
         </div>
       </div>
     </div>
+    <div
+      class="modal-backdrop fade show"
+      id="backdrop"
+      style="display: none"
+    ></div>
 
     <script src="./app.js"></script>
     <script
