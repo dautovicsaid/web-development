@@ -1,7 +1,12 @@
+.movie-row {
+  vertical-align: middle;
+  background-color: #f8d7da;
+}
+
 .watched {
   background-color: #d1e7dd;
 }
 
-.notWatched {
-  background-color: #f8d7da;
+.input-error {
+  color: red;
 }

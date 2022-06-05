@@ -1,5 +1,16 @@
 const moviesWrapper = document.getElementById("moviesWrapper");
 const createMovieForm = document.getElementById("createMovieForm");
+const createMovieSuccess = document.getElementById("createMovieSuccess");
+const createMovieModal = document.getElementById("createMovieModal");
+const backdrop = document.getElementById("backdrop");
+
+const createMovieInputs = {
+  title: document.getElementsByName("title")[0],
+  year: document.getElementsByName("year")[0],
+  country: document.getElementsByName("country")[0],
+  note: document.getElementsByName("note")[0],
+  actors: document.getElementsByName("actors")[0],
+};
 
 const movies = [
   {
@@ -38,14 +49,19 @@ function showMovies() {
 
 function movieRow(movie, index) {
   let watchedCheckboxChecked = movie.watched ? "checked" : "";
+  let rowClassNames = "movie-row";
 
-  return `<tr id="row${index}" class="notWatched">
+  if (movie.watched) {
+    rowClassNames += " watched";
+  }
+
+  return `<tr id="row${index}" class="${rowClassNames}">
     <td><input type="checkbox" ${watchedCheckboxChecked} onchange="setWatched(event, ${index})"/></td>
     <td>${movie.title}</td>
     <td>${movie.year}</td>
     <td>${movie.country}</td>
     <td>${movie.note}</td>
-    <td>${movie.actors}</td>
+    <td>${movie.actors.join("<br>")}</td>
     </tr>`;
 }
 
@@ -54,25 +70,22 @@ function setWatched(event, index) {
   let movieRow = document.getElementById(`row${index}`);
 
   movies[index].watched = isChecked;
-  movieRow.removeAttribute("class");
 
   if (movies[index].watched) {
     movieRow.classList.add("watched");
   } else {
-    movieRow.classList.add("notWatched");
+    movieRow.classList.remove("watched");
   }
 }
 
 function addMovie(event) {
   event.preventDefault();
 
-  let formData = {
-    title: document.getElementsByName("title")[0].value,
-    year: document.getElementsByName("year")[0].value,
-    country: document.getElementsByName("country")[0].value,
-    note: document.getElementsByName("note")[0].value,
-    actors: document.getElementsByName("actors")[0].value,
-  };
+  let formData = {};
+
+  Object.keys(createMovieInputs).forEach(
+    (inputName) => (formData[inputName] = createMovieInputs[inputName].value)
+  );
 
   if (!validateMovieFormData(formData)) {
     return;
@@ -88,20 +101,19 @@ function addMovie(event) {
   };
 
   movies.push(movie);
-  // moviesWrapper.innerHTML = moviesWrapper.innerHTML + movieRow(movie);
   showMovies();
 
   createMovieForm.reset();
-  closeCreateMovieModal();
+  closeCreateMovieModal(false);
+
+  showCreateMovieSuccess();
 }
 
 function validateMovieFormData(movie) {
   let errors = {
-    title: undefined,
-    year: undefined,
-    country: undefined,
-    note: undefined,
-    actors: undefined,
+    title: null,
+    year: null,
+    actors: null,
   };
 
   if (movie.title.length < 1) {
@@ -119,15 +131,12 @@ function validateMovieFormData(movie) {
   }
 
   for (let property of Object.keys(errors)) {
-    if (!(errors[property] === undefined)) {
+    if (!(errors[property] === null)) {
       displayCreateMovieErrors(errors);
       return false;
     }
   }
-  // if (Object.keys(errors).length > 0) {
-  //   displayCreateMovieErrors(errors);
-  //   return false;
-  // }
+
   return true;
 }
 
@@ -136,27 +145,41 @@ function displayCreateMovieErrors(errors) {
     let errorMessage = errors[property];
     let errorSpan = document.getElementById(`error-${property}`);
 
-    if (!(errorMessage == undefined)) {
-      errorSpan.removeAttribute("class");
-      errorSpan.classList.add("d-inline", "invalid-feedback");
+    if (!(errorMessage == null)) {
+      errorSpan.classList.remove("d-none");
       errorSpan.innerHTML = errorMessage;
     } else {
       errorSpan.innerHTML = "";
-      errorSpan.removeAttribute("class");
       errorSpan.classList.add("d-none");
     }
-    // span#error-${property}.innerHtml = errorMEssage;
   }
 }
 
 function showCreateMovieModal() {
-  document.getElementById("backdrop").style.display = "block";
-  document.getElementById("createMovieModal").style.display = "block";
-  document.getElementById("createMovieModal").classList.add("show");
+  backdrop.classList.remove("d-none");
+  createMovieModal.style.display = "block";
+  createMovieModal.classList.add("show");
 }
 
-function closeCreateMovieModal() {
-  document.getElementById("backdrop").style.display = "none";
-  document.getElementById("createMovieModal").style.display = "none";
-  document.getElementById("createMovieModal").classList.remove("show");
+function closeCreateMovieModal(resetErrorInputs) {
+  backdrop.classList.add("d-none");
+  createMovieModal.style.display = "none";
+  createMovieModal.classList.remove("show");
+
+  if (resetErrorInputs) {
+    let inputs = document.getElementsByClassName("input-error");
+
+    for (let input of inputs) {
+      input.innerHTML = "";
+      input.classList.add("d-none");
+    }
+  }
+}
+
+function showCreateMovieSuccess() {
+  createMovieSuccess.classList.remove("d-none");
+
+  setTimeout(() => {
+    createMovieSuccess.classList.add("d-none");
+  }, 3000);
 }
