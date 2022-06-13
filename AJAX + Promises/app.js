@@ -1,4 +1,5 @@
-const baseUrl = "https://reqres.in/api/";
+const baseUrl = "http://localhost/test-projekat/";
+
 function loadUsers(page = 1) {
   fetch(baseUrl + "users?page=" + page)
     .then((response) => response.json())
@@ -41,10 +42,15 @@ function displayPagination(total_pages) {
   }
 }
 
-function loadUserDetails(userId) {
-  fetch(baseUrl + "users/" + userId)
-    .then((response) => response.json())
-    .then((responseJSON) => showSingleUserDetails(responseJSON.data));
+async function loadUserDetails(userId) {
+  //      fetch(baseUrl + "users/" + userId)
+  //     .then((response) => response.json())
+  //     .then((responseJSON) => showSingleUserDetails(responseJSON.data));
+
+  let response = await fetch(baseUrl + "users/" + userId);
+  let responseJSON = await response.json();
+
+  showSingleUserDetails(responseJSON.data);
 }
 
 function showSingleUserDetails(user) {
