@@ -1,19 +1,16 @@
-var backendUrl = "http://localhost/phonebook_backend/";
+var baseUrl = "http://localhost/phonebook/";
 
-async function getContacts() {
-  let response = await fetch(backendUrl + "getContacts.php");
-  let contacts = await response.json();
+async function displayCities() {
+  let country_id = document.getElementById("country_id").value;
+  let response = await fetch(
+    baseUrl + "getCitiesByCountry.php?country_id=" + country_id
+  );
+  let cities = await response.json();
 
-  displayContacts(contacts);
-}
-
-function displayContacts(contacts) {
-  let list = document.getElementById("contactsList");
-  contactsHTML = "";
-  contacts.forEach((contact) => {
-    contactsHTML += ` <li>${contact.first_name} ${contact.last_name} (${contact.email})</li>`;
+  let citiesHTML = "";
+  cities.forEach((city) => {
+    citiesHTML += `<option value="${city.id}" >${city.name}</option>`;
   });
-  list.innerHTML = contactsHTML;
-}
 
-getContacts();
+  document.getElementById("city_id").innerHTML = citiesHTML;
+}
